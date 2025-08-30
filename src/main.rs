@@ -19,7 +19,7 @@ fn main() {
         add_note();
       }
       "list" => {
-        println!("You chose to list notes.");
+        list_notes();
       }
       "remove" => {
         println!("You chose to remove a note.");
@@ -35,7 +35,9 @@ fn main() {
 
 fn add_note() {
   let mut note = String::new();
+
   println!("\nWhat are you thinking?: ");
+
   io::stdin().read_line(&mut note).expect("Failed to read note");
 
   if exists("note.txt").expect("Could not check if file exists") {
@@ -52,5 +54,14 @@ fn add_note() {
     file.write_all(note.as_bytes()).expect("Could not write to file");
 
     println!("\n{color_green}Note successfully added.{color_reset}");
+  }
+}
+
+fn list_notes() {
+  if exists("note.txt").expect("Could not check if file exists") {
+    let notes = std::fs::read_to_string("note.txt").expect("Could not read file");
+    println!("\n{bg_green}Your notes:{bg_reset}\n{notes}");
+  } else {
+    println!("\n{color_yellow}No notes found. You can add a note using the 'add' command.{color_reset}");
   }
 }
