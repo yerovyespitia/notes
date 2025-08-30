@@ -4,10 +4,10 @@
   - [x] add
   - [x] list
   - [x] remove
-- [] Add a note
-  - [] Get user input
-  - [] Create file .txt if it doesn't exist
-  - [] Store the note
+- [x] Add a note
+  - [x] Get user input
+  - [x] Create file .txt if it doesn't exist
+  - [x] Store the note
 - [] List notes
   - [] Read the file
 - [] Remove a note
