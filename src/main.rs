@@ -22,7 +22,7 @@ fn main() {
         list_notes();
       }
       "remove" => {
-        println!("You chose to remove a note.");
+        remove_notes();
       }
       "quit" => {
         println!("\n{color_green}Exiting...{color_reset}");
@@ -62,6 +62,17 @@ fn list_notes() {
     let notes = std::fs::read_to_string("note.txt").expect("Could not read file");
     println!("\n{bg_green}Your notes:{bg_reset}\n{notes}");
   } else {
-    println!("\n{color_yellow}No notes found. You can add a note using the 'add' command.{color_reset}");
+    println!("\n{color_yellow}No notes found.{color_reset}");
+  }
+}
+
+fn remove_notes() {
+  if exists("note.txt").expect("Could not check if file exists") {
+    std::fs::remove_file("note.txt").expect("Could not delete file");
+
+    println!("\n{color_green}All notes have been removed.{color_reset}");
+
+  } else {
+    println!("\n{color_yellow}No notes found to remove.{color_reset}");
   }
 }
